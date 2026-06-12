@@ -400,19 +400,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var badge = document.getElementById('__framer-badge-container');
-  if (badge) badge.remove();
-  
-  var observer = new MutationObserver(function() {
-    var badge = document.getElementById('__framer-badge-container');
-    if (badge) badge.remove();
-  });
-  
-  observer.observe(document.body, { childList: true, subtree: true });
-});
-</script>
+      (function() {
+        function removeBadge() {
+          // Targets by ID
+          ['__framer-badge-container', '__framer-badge'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.parentNode.removeChild(el);
+          });
+          // Targets by Class and Link
+          document.querySelectorAll('.__framer-badge, .framer-bmpgw8, a[href="https://www.framer.com/"]').forEach(function(el) {
+            if (el && el.parentNode) el.parentNode.removeChild(el);
+          });
+        }
+        // Run it immediately, when DOM is ready, when fully loaded, and on a fast loop
+        removeBadge();
+        document.addEventListener('DOMContentLoaded', removeBadge);
+        window.addEventListener('load', removeBadge);
+        setInterval(removeBadge, 50);
+      })();
+    </script>
 
+    <script type="module" async="" data-framer-bundle="main" fetchpriority="low" src="./Sundar Portfolio_files/script_main.DGLpVmy5.mjs"></script>
 
-</body>
+  </body>
 </html>
