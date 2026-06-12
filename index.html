@@ -343,6 +343,15 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 #__framer-badge-container { display: none !important; }
 </style></head>
 <body>
+	<body>
+<script>
+setInterval(function() {
+  var el = document.querySelector('#__framer-badge-container');
+  if (el) el.style.cssText = 'display:none!important';
+  var el2 = document.querySelector('.__framer-badge');
+  if (el2) el2.style.cssText = 'display:none!important';
+}, 100);
+</script>
 	<script async="" src="./Sundar Portfolio_files/script" data-fid="56f3f4f02ede54285ee1595acb912e2e4f794ee1cf72ee9a7f804235585c0f56" data-no-nt=""></script>
 	<!-- Start of bodyStart -->
     
