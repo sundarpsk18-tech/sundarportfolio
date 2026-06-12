@@ -440,5 +440,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script type="module" async="" data-framer-bundle="main" fetchpriority="low" src="./Sundar Portfolio_files/script_main.DGLpVmy5.mjs"></script>
 
+<script>
+      (function() {
+        // Intercept element creation
+        const originalCreateElement = document.createElement;
+        document.createElement = function(tagName, options) {
+          const element = originalCreateElement.call(document, tagName, options);
+          
+          // If Framer tries to make a link or div for the badge, we break it
+          if (tagName.toLowerCase() === 'a' || tagName.toLowerCase() === 'div') {
+            const originalSetAttribute = element.setAttribute;
+            element.setAttribute = function(name, value) {
+              if (value && (value.includes('__framer-badge') || value.includes('framer-bmpgw8') || value.includes('framer.com'))) {
+                // Force it to be hidden completely
+                element.style.setProperty('display', 'none', 'important');
+                element.style.setProperty('visibility', 'hidden', 'important');
+                element.style.setProperty('opacity', '0', 'important');
+              }
+              return originalSetAttribute.call(element, name, value);
+            };
+          }
+          return element;
+        };
+      })();
+    </script>
+
+    <script type="module" async="" data-framer-bundle="main" fetchpriority="low" src="./Sundar Portfolio_files/script_main.DGLpVmy5.mjs"></script>
+
   </body>
 </html>
+
