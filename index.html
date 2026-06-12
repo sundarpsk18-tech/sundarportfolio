@@ -356,7 +356,25 @@ div#__framer-badge-container,
   width: 0 !important;
   height: 0 !important;
 }
-</style>   </head>
+</style> 
+<style>
+      /* Absolutely hides the badge container and any matching Framer elements permanently */
+      #__framer-badge-container, 
+      .__framer-badge, 
+      .framer-bmpgw8, 
+      [data-framer-badge] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+      }
+    </style>
+  </head>
+</head>
 <body>
 <script>
 setInterval(function() {
