@@ -358,7 +358,6 @@ div#__framer-badge-container,
 }
 </style>   </head>
 <body>
-	<body>
 <script>
 setInterval(function() {
   var el = document.querySelector('#__framer-badge-container');
@@ -401,18 +400,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-(function() {
-  function removeBadge() {
-    ['__framer-badge-container', '__framer-badge'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.parentNode.removeChild(el);
-    });
-    document.querySelectorAll('.__framer-badge, .framer-bmpgw8, a[href="https://www.framer.com/"]').forEach(function(el) {
-      el.parentNode.removeChild(el);
-    });
-  }
-  setInterval(removeBadge, 50);
-  document.addEventListener('DOMContentLoaded', removeBadge);
-  window.addEventListener('load', removeBadge);
-})();
-</script></body></html>
+document.addEventListener('DOMContentLoaded', function() {
+  var badge = document.getElementById('__framer-badge-container');
+  if (badge) badge.remove();
+  
+  var observer = new MutationObserver(function() {
+    var badge = document.getElementById('__framer-badge-container');
+    if (badge) badge.remove();
+  });
+  
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+</script>
+
+</body>
+</html>
+</body>
+</html>
