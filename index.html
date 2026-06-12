@@ -341,7 +341,22 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 }
 </style><style type="text/css" data-framer-css="true">
 #__framer-badge-container { display: none !important; }
-</style></head>
+</style>  
+<style>
+#__framer-badge-container,
+.__framer-badge,
+a.__framer-badge,
+div#__framer-badge-container,
+[data-framer-badge],
+.framer-bmpgw8 {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+</style>   </head>
 <body>
 	<body>
 <script>
@@ -384,4 +399,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
   observer.observe(document.body, { childList: true, subtree: true });
 });
+</script>
+<script>
+(function() {
+  function removeBadge() {
+    ['__framer-badge-container', '__framer-badge'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.parentNode.removeChild(el);
+    });
+    document.querySelectorAll('.__framer-badge, .framer-bmpgw8, a[href="https://www.framer.com/"]').forEach(function(el) {
+      el.parentNode.removeChild(el);
+    });
+  }
+  setInterval(removeBadge, 50);
+  document.addEventListener('DOMContentLoaded', removeBadge);
+  window.addEventListener('load', removeBadge);
+})();
 </script></body></html>
